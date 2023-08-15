@@ -1,0 +1,83 @@
+<div *ngIf="!isLoading" class="container">
+    <div class="chat-list mat-elevation-z5">
+      <!-- <div class="search-input">
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Search for users and start a chat"
+            [matAutocomplete]="users"
+          />
+        </mat-form-field>
+        <mat-autocomplete #users="matAutocomplete">
+          <mat-option
+            [value]="''"
+          >
+            {{ user.displayName }}
+          </mat-option>
+        </mat-autocomplete>
+      </div> -->
+      <!-- <mat-selection-list [multiple]="false">
+        <mat-divider></mat-divider>
+        <mat-list-option *ngFor="let u of users">
+          <img
+            matListAvatar
+          />
+          <p mat-line class="chat-title">
+            <span class="chat-name">{{u.name}}</span
+            ><span class="chat-date">11/1/2023</span>
+          </p>
+          <p mat-line>bbb</p>
+          <mat-divider></mat-divider>
+        </mat-list-option>
+      </mat-selection-list> -->
+      <mat-list role="list">
+        <mat-list-item role="listitem"*ngFor="let u of users">{{u.name}}</mat-list-item>
+      </mat-list>
+    </div>
+    <div class="messages mat-elevation-z5">
+      <!-- <div
+        class="messages-header"
+        *ngIf="selectedChat$ | async as selectedChat; else noChatSelected"
+      >
+        <img
+          [src]="
+            selectedChat.chatPic
+              ? selectedChat.chatPic
+              : 'assets/images/image-placeholder.png'
+          "
+        /> -->
+        <h2>Chat Box</h2>
+      <mat-divider></mat-divider>
+      <div class="chat-area">
+            <div
+              class="chat-bubble-container"
+              [ngClass]="{ sender: user && message.sender.name === user.name }"
+              *ngFor="let message of data"
+            >
+            <div class="child-chat-buble-container">
+                <div class="chat-name" *ngIf="user && message.sender.name !== user.name">{{message.sender.name}}</div>
+                <div class="chat-bubble">
+                  {{ message.text }}
+                  <!-- <span class="chat-time">{{
+                    message.sentDate | dateDisplay
+                  }}</span> -->
+                </div>
+            </div>
+        </div>
+        <div #endOfChat></div>
+      </div>
+      <div class="input-area">
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+            placeholder="Enter your message..."
+            [(ngModel)]="text"
+            (keydown.enter)="onSubmit()"
+          />
+          <button mat-icon-button matSuffix (click)="onSubmit()">
+            <mat-icon>send</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>

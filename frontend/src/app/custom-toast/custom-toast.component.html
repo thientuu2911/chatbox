@@ -1,0 +1,7 @@
+<div style="display: flex">
+<label for="input1">Input:</label>
+<input type="text" matInput (focusout)="saveData()"
+              placeholder="Tuu">
+    <ng-lottie height = "35px" width="35px" *ngIf="isLoading || isSaved" [options]="options"></ng-lottie>
+</div>
+  

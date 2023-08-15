@@ -1,0 +1,17 @@
+  
+  <mat-card>
+      <form style="text-align:center;">
+      <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input [(ngModel)]="username" type="text" matInput [formControl]="nameFormControl" [errorStateMatcher]="matcher"
+              placeholder="Tuu">
+        <mat-error *ngIf="nameFormControl.hasError('required')">
+          Name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <button (click)="saveData()" mat-flat-button color="primary">
+        <span class="custom-button">Join room
+          <ng-lottie height = "35px" width="35px" *ngIf="isLoading || isSaved" [options]="options"></ng-lottie></span>
+      </button>
+    </form>      
+  </mat-card>
